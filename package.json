@@ -2,7 +2,6 @@
   "name": "ts-api-template",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "clean": "npx rimraf ./dist",
     "build": "npm run clean && npx tsc -p tsconfig.build.json && cp .env* ./dist",
@@ -13,22 +12,34 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:e2e": "jest --config jest.config.e2e.ts"
+    "test:e2e": "jest --config jest.config.e2e.ts",
+    "prepare": "husky"
   },
   "_moduleAliases": {
     "@": "./dist"
   },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "keywords": [],
-  "author": "",
+  "author": "royfuwei",
   "license": "ISC",
   "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b",
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@commitlint/cz-commitlint": "^19.6.1",
     "@eslint/js": "^9.20.0",
     "@types/jest": "^29.5.14",
     "@types/supertest": "^6.0.2",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.20.1",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "module-alias": "^2.2.3",
     "prettier": "^3.5.1",
