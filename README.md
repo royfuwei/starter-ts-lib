@@ -74,6 +74,30 @@ pnpm test:e2e:watch
   pnpm test:e2e:web
   ```
 
+---
+
+## Release get CHANGELOG\.md by standard-version
+
+```sh
+# First Release
+# npx
+npx standard-version -t '' --first-release
+
+## Release patch
+npx standard-version -t '' --release-as patch
+# dry-run
+npx standard-version -t '' --release-as patch --dry-run
+
+## Release minor
+npx standard-version -t '' --release-as minor
+# dry-run
+npx standard-version -t '' --release-as minor --dry-run
+
+## Release major
+npx standard-version -t '' --release-as major
+# dry-run
+npx standard-version -t '' --release-as major --dry-run
+```
 
 ---
 
