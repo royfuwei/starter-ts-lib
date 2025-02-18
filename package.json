@@ -1,0 +1,41 @@
+{
+  "name": "ts-api-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "npx rimraf ./dist",
+    "build": "npm run clean && npx tsc -p tsconfig.build.json && cp .env* ./dist",
+    "dev": "NODE_ENV=local npx tsc-watch -p tsconfig.app.json --onSuccess \"node dist/main.js\"",
+    "start": "tsc && node dist/main.js",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:e2e": "jest --config jest.config.e2e.ts"
+  },
+  "_moduleAliases": {
+    "@": "./dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b",
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "@types/jest": "^29.5.14",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "jest": "^29.7.0",
+    "module-alias": "^2.2.3",
+    "prettier": "^3.5.1",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
+  }
+}
