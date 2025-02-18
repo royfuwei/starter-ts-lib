@@ -5,8 +5,8 @@
     "node_modules",
     "dist*",
     "test",
-    "**/*spec.ts",
-    "**/*spec-e2e.ts",
+    "**/*(spec|test).ts",
+    "**/*e2e-(spec|test).ts",
     "eslint.config.*",
     "jest.config.*"
   ]

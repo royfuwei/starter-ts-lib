@@ -6,11 +6,28 @@ export default {
     '@/(.*)': '<rootDir>/../src/$1',
   },
   rootDir: 'test',
-  // transform: {
-  //   '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/../tsconfig.spec.json' }],
-  // },
-  testRegex: '.*\\.e2e-spec\\.ts$',
+  transform: {
+    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/../tsconfig.spec.json' }],
+  },
+  testRegex: '.*\\.e2e-(spec|test)\\.ts$',
   collectCoverageFrom: ['**/*.(t|j)s'],
-  coverageDirectory: '../coverage',
+  coverageDirectory: '../coverage.e2e',
   testEnvironment: 'node',
+  reporters: [
+    'default',
+    [
+      'jest-junit',
+      {
+        outputDirectory: 'test-results/jest-e2e',
+        outputName: 'results.xml',
+      },
+    ],
+    [
+      'jest-html-reporter',
+      {
+        pageTitle: 'Test Report',
+        outputPath: 'test-results/jest-e2e/index.html',
+      },
+    ],
+  ],
 };
