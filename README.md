@@ -1,7 +1,7 @@
-TS Api Template
+TypeScript Template
 ===
 
-## Get Started by TS Api Template
+## Get Started by TS Template
 
 ### Install pnpm
 

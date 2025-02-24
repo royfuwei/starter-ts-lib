@@ -1,5 +1,5 @@
 export default {
-  displayName: 'ts-api-template',
+  displayName: 'ts-template',
   preset: 'ts-jest',
   moduleFileExtensions: ['js', 'json', 'ts'],
   moduleNameMapper: {
