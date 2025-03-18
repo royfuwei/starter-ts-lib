@@ -10,16 +10,26 @@ TypeScript Template
 ``` sh
 corepack enable pnpm
 
-corepack prepare pnpm@latest-9 --activate
-corepack use pnpm@latest-9
+# corepack prepare pnpm@latest-9 --activate
+# corepack use pnpm@latest-9
+# corepack prepare pnpm@latest-10 --activate
+# corepack use pnpm@latest-10
+
+corepack prepare pnpm@10.0.0 --activate
+corepack use pnpm@10.0.0
 
 # clean local corepack cache
 corepack cache clean
+
+
+# Cannot find matching keyid: {"signatures":[{"sig":"MEQCIGfJsZcWOYet7N9s+gixdrVR7NuxXRagWTDp3...
+# use
+npm install --global corepack@latest
 ```
 
 use `pnpm`
 ```sh
-pnpm -v # 9.0.0
+pnpm -v # 10.0.0
 pnpm install --frozen-lockfile
 ```
 
