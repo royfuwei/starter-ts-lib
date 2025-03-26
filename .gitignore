@@ -403,3 +403,4 @@ test-results*
 
 .env.*
 !.env.example
+types

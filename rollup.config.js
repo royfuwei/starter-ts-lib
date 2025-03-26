@@ -1,25 +1,74 @@
-import json from '@rollup/plugin-json';
+// rollup.config.js
+import path from 'path';
+import fs from 'fs';
+
 import typescript from 'rollup-plugin-typescript2';
-// import resolve from '@rollup/plugin-node-resolve';
-// import commonjs from '@rollup/plugin-commonjs';
-// import terser from '@rollup/plugin-terser';
+import dts from 'rollup-plugin-dts';
+import copy from 'rollup-plugin-copy';
 
-// `npm run build` -> `production` is true
-// `npm run dev` -> `production` is false
-const production = !process.env.ROLLUP_WATCH;
+// const projectRootDir = path.resolve(__dirname);
 
-export default {
-  input: 'src/main.ts',
-  plugins: [
-    json(),
-    typescript({ tsconfig: './tsconfig.rollup.json' }),
-    // resolve({ extensions: ['.ts'] }),
-    // commonjs(), // converts date-fns to ES modules
-    // production && terser(), // minify, but only in production
-  ],
-  output: {
-    file: 'dist-rollup/main.js',
-    format: 'cjs', // esm: es module, iife: immediately-invoked function expression — suitable for <script> tags
-    sourcemap: true,
+// 自訂 plugin: 負責 package.json 搬移與欄位調整
+import { packageJsonPlugin } from './packageJsonPlugin.js';
+
+const distDir = 'dist';
+const inputFile = 'src/index.ts';
+
+// 讀取 root package.json，標記 external
+const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
+const externalDeps = [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
+];
+
+export default [
+  // ----- (1) JS 构建：產出 ESM + CJS -----
+  {
+    input: inputFile,
+    output: [
+      {
+        file: path.join(distDir, 'index.mjs'),
+        format: 'esm',
+        sourcemap: false,
+        inlineDynamicImports: true,
+      },
+      {
+        file: path.join(distDir, 'index.cjs'),
+        format: 'cjs',
+        sourcemap: false,
+        inlineDynamicImports: true,
+      },
+    ],
+    external: externalDeps, // 不要把相依套件打包進來
+    plugins: [
+      typescript({
+        tsconfig: 'tsconfig.rollup.json',
+        useTsconfigDeclarationDir: true,
+      }),
+
+      // (選擇性) copy 其他檔案到 dist
+      copy({
+        targets: [
+          { src: 'README.md', dest: distDir },
+          // 若要 copy .npmrc、LICENSE 等檔案也可在這裡加
+        ],
+        hook: 'writeBundle',
+      }),
+
+      // 我們自訂的 plugin, build 結束後複製/修正 package.json
+      packageJsonPlugin({ distDir }),
+    ],
   },
-};
+
+  // ----- (2) DTS 构建：合併型別檔為 index.d.ts -----
+  {
+    // input: path.join(distDir, 'types/index.d.ts'),
+    input: path.join('types/index.d.ts'),
+    output: {
+      file: path.join(distDir, 'index.d.ts'),
+      format: 'es',
+    },
+    plugins: [dts()],
+    external: externalDeps,
+  },
+];

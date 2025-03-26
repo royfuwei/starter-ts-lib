@@ -1,16 +1,12 @@
 {
-  "name": "ts-template",
+  "name": "@ts-template",
   "version": "1.0.0",
   "description": "",
+  "main": "src/index.ts",
   "scripts": {
     "clean": "npx rimraf ./dist",
-    "build": "npm run clean && npx tsc -p tsconfig.build.json",
-    "dev": "NODE_ENV=local npx tsc-watch -p tsconfig.app.json --onSuccess \"node dist/main.js\"",
-    "start": "npx tsc -p tsconfig.build.json && node dist/main.js",
-    "build:rollup": "rollup -c",
-    "build:rollup:watch": "rollup -c -w",
-    "start:rollup": "npx nodemon dist-rollup/main.js",
-    "dev:rollup": "npx npm-run-all --parallel build:rollup:watch start:rollup",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "lint-staged": "npx lint-staged",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -28,9 +24,6 @@
     "release:minor": "npx standard-version -t '' --release-as minor",
     "release:major": "npx standard-version -t '' --release-as major",
     "prepare": "npx husky"
-  },
-  "_moduleAliases": {
-    "@": "./dist"
   },
   "lint-staged": {
     "*.ts": [
@@ -71,6 +64,8 @@
     "lint-staged": "^15.4.3",
     "prettier": "^3.5.1",
     "rollup": "^4.36.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-dts": "^6.2.1",
     "rollup-plugin-typescript2": "^0.36.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",

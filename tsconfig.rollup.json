@@ -1,6 +1,10 @@
 {
-  "extends": "./tsconfig.app.json",
+  "extends": "./tsconfig.lib.json",
   "compilerOptions": {
-    "module": "ESNext"
-  }
+    "target": "ESNext",
+    "module": "ESNext", // 輸出 ES Module, 搭配 Rollup
+    "moduleResolution": "Node" // 或 "NodeNext", 視 Node.js 版本而定
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
 }
