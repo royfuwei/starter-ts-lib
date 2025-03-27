@@ -19,7 +19,6 @@ export function packageJsonPlugin(options = {}) {
       delete pkg.exports;
       delete pkg.devDependencies;
       delete pkg.scripts;
-      delete pkg._moduleAliases;
       delete pkg['lint-staged'];
       delete pkg.config;
       delete pkg.packageManager;

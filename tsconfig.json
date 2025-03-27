@@ -16,7 +16,6 @@
     "emitDeclarationOnly": false, // 讓 TS 同時輸出 .js 及 .d.ts
     "outDir": "dist", // 暫存 .d.ts 的輸出資料夾(後面會再用 rollup-plugin-dts 整合)
     "sourceMap": true, // 為輸出的 .js 產生 sourcemap
-    "rootDir": "src", // 告知 TS 原始碼的位置
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]

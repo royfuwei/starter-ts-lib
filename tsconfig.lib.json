@@ -5,6 +5,7 @@
     "node_modules",
     "dist*",
     "test",
+    "types",
     "**/*(spec|test).ts",
     "**/*e2e-(spec|test).ts",
     "eslint.config.*",
