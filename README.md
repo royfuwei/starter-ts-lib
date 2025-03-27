@@ -3,6 +3,33 @@ TypeScript Template
 
 ## Get Started by TS Template
 
+### package.json main/exports settings
+
+#### settings main
+
+```json
+{
+  ...
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  ...
+}
+```
+
+#### settings exports
+```json
+{
+  ...
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs",
+    "types": "./types/index.d.ts"
+  },
+  ...
+}
+```
+
 ### Install pnpm
 
 - [pnpm.io/zh-TW/installation](https://pnpm.io/zh-TW/installation)
