@@ -27,6 +27,7 @@ const copyPackageJsonFn = async (distDir) => {
     '.': {
       import: './index.mjs',
       require: './index.cjs',
+      types: './index.d.ts',
     },
     './package.json': './package.json',
   };
