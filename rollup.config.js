@@ -11,7 +11,7 @@ import commonjs from '@rollup/plugin-commonjs';
 // const projectRootDir = path.resolve(__dirname);
 
 // 自訂 plugin: 負責 package.json 搬移與欄位調整
-import { packageJsonPlugin } from './packageJsonPlugin.js';
+import { rollupCopyPackageJsonPlugin } from './scripts/copyPackageJsonPlugin.mjs';
 
 const distDir = 'dist';
 const inputFile = 'src/index.ts';
@@ -62,7 +62,7 @@ export default [
       commonjs(),
 
       // 我們自訂的 plugin, build 結束後複製/修正 package.json
-      packageJsonPlugin({ distDir }),
+      rollupCopyPackageJsonPlugin({ distDir }),
     ],
   },
 
