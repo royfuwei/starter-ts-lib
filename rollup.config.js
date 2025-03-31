@@ -5,6 +5,8 @@ import fs from 'fs';
 import typescript from 'rollup-plugin-typescript2';
 import dts from 'rollup-plugin-dts';
 import copy from 'rollup-plugin-copy';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 // const projectRootDir = path.resolve(__dirname);
 
@@ -54,6 +56,10 @@ export default [
         ],
         hook: 'writeBundle',
       }),
+
+      resolve(),
+
+      commonjs(),
 
       // 我們自訂的 plugin, build 結束後複製/修正 package.json
       packageJsonPlugin({ distDir }),
