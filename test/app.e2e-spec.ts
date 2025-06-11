@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import DemoUtils from '@/utils/demo.utils';
 
 describe('Main e2e', () => {
