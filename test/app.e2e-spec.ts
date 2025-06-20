@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import DemoUtils from '@/utils/demo.utils';
+import { getDemoValue } from '@/utils';
 
 describe('Main e2e', () => {
   it('should be true', () => {
@@ -7,7 +7,7 @@ describe('Main e2e', () => {
   });
 
   it('should be return data', () => {
-    const result = DemoUtils.getDemoValue();
+    const result = getDemoValue();
     expect(result).toBe('demo');
   });
 });
