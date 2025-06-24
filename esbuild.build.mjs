@@ -4,6 +4,7 @@ import { copyPackageJsonPlugin } from './scripts/copyPackageJsonPlugin.mjs';
 import { dtsBundlePlugin } from './scripts/dtsBundlePlugin.mjs';
 import path from 'path';
 import fs from 'fs';
+import esbuildPluginTsc from 'esbuild-plugin-tsc';
 
 const distDir = 'dist';
 const inputFile = 'src/index.ts';
@@ -24,6 +25,7 @@ const sharedConfig = {
   tsconfig: './tsconfig.esbuild.json', // 使用 tsconfig.json 設定
   // minify: true,       // 需壓縮可開啟
   // external: ['lodash','react'], // 若有外部依賴不想打進lib可外部化
+  plugins: [esbuildPluginTsc()],
 };
 
 async function buildLib() {
