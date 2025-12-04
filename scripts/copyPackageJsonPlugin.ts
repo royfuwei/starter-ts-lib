@@ -29,14 +29,6 @@ const copyPackageJsonFn = async (distDir: string) => {
   pkg.main = 'index.cjs';
   pkg.module = 'index.mjs';
   pkg.types = 'index.d.ts';
-  pkg.exports = {
-    '.': {
-      import: './index.mjs',
-      require: './index.cjs',
-      types: './index.d.ts',
-    },
-    './package.json': './package.json',
-  };
 
   // 4) 寫回 distDir 中
   const outPath = path.join(distDir, 'package.json');
