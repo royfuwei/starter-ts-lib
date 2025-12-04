@@ -26,7 +26,7 @@ const copyPackageJsonFn = async (distDir: string) => {
 
   // 3) 如果要指定新的 main/module/types
   //    （通常你會在 dist 內成為新的根）
-  pkg.main = 'index.cjs';
+  pkg.main = 'index.js';
   pkg.module = 'index.mjs';
   pkg.types = 'index.d.ts';
 

@@ -23,10 +23,6 @@ export default defineConfig({
   // 一次出 ESM + CJS（取代你原本兩個 esbuild.build）
   format: ['esm', 'cjs'],
 
-  // 固定用 .mjs / .cjs（跟你原本 outfile index.mjs / index.cjs 對齊）
-  // 沒開的話，tsdown 會依 package.json 的 "type" 決定副檔名
-  //   fixedExtension: true, // 需要 tsdown >= 0.9.x :contentReference[oaicite:0]{index=0}
-
   treeshake: true,
 
   // 對應原本 platform: 'neutral'
